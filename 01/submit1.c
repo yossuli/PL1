@@ -12,7 +12,10 @@ int main() {
   int hour;
   printf("今日本で何時(0-23)?");
   scanf("%d", &hour);
+  if (hour < 0 || hour > 23) {
+    printf("エラー：正しい時刻を入力してください");
+    return 1;
+  };
   printf("今ニューヨークでは%d時です\n", JST_to_EST(hour));
   return 0;
 }
-
