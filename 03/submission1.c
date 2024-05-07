@@ -8,13 +8,9 @@ int withdraw(int amount) {
   bank = bank - amount;
   return 1;
 }
-void deposit(int amount) { //
-  bank = bank + amount;
-}
+void deposit(int amount) { bank = bank + amount; }
 
-int balance() { //
-  return bank;
-}
+int balance() { return bank; }
 
 int main() {
   int ok;
