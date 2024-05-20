@@ -16,4 +16,5 @@ int main() {
     printf("%d, ", x[i]);
   }
   printf(")\n");
+  return 0;
 }

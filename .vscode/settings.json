@@ -1,8 +1,9 @@
 {
   "editor.formatOnSave": true,
   "[c]": {
-    "editor.defaultFormatter": "xaver.clang-format",
-    "editor.suggest.showSnippets": false
+    "editor.defaultFormatter": "xaver.clang-format"
+    // "editor.suggest.showSnippets": false,
+    // "editor.quickSuggestions": true
   },
   "github.copilot.enable": {
     "c": false

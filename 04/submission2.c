@@ -24,4 +24,5 @@ int main() {
   int ans2 = find(b, sizeof(b) / sizeof(int), is_4);
   printf("4 %s a\n", ans ? "in" : "not in");
   printf("4 %s b\n", ans2 ? "in" : "not in");
+  return 0;
 }

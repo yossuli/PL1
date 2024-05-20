@@ -16,4 +16,5 @@ int main() {
   int ans2 = find_even(b, sizeof(b) / sizeof(int));
   printf("even number %s a\n", ans ? "in" : "not in");
   printf("even number %s b\n", ans2 ? "in" : "not in");
+  return 0;
 }
