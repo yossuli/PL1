@@ -4,87 +4,85 @@
 #include <time.h>
 
 typedef struct tweet {
-    time_t ts; // 投稿時刻 (Posted time)
-    char   msg[280+1]; // メッセージ (Message)
-    struct tweet* prev; // 一つ前の要素 (Previous element)
-    struct tweet* next; // 一つ先の要素 (Next element)
+  time_t ts;          // 投稿時刻 (Posted time)
+  char msg[280 + 1];  // メッセージ (Message)
+  struct tweet *prev; // 一つ前の要素 (Previous element)
+  struct tweet *next; // 一つ先の要素 (Next element)
 } Tweet;
 
 typedef struct {
-    Tweet* first; // 最初の要素 (First element)
-    Tweet* last; // 最後の要素 (Last element)
+  Tweet *first; // 最初の要素 (First element)
+  Tweet *last;  // 最後の要素 (Last element)
 } Diary;
 
-
-Diary* create_diary()
-{
-    Diary* d = (Diary*)malloc(sizeof(Diary));
-    d->first = d->last = NULL;
-    return d;
+Diary *create_diary() {
+  Diary *d = (Diary *)malloc(sizeof(Diary));
+  d->first = d->last = NULL;
+  return d;
 }
 
-Tweet* get_tweet(Diary* d, int index)
-{
-    Tweet* t = d->first;
-    for (int i = 0; i < index; i++) {
-        t = t->next;
-    }
-    return t;
+Tweet *get_tweet(Diary *d, int index) {
+  Tweet *t = d->first;
+  for (int i = 0; i < index; i++) {
+    t = t->next;
+  }
+  return t;
 }
 
-void remove_tweet(Diary* d, Tweet* t)
-{
-    Tweet* prev = t->prev;
-    Tweet* next = t->next;
+void remove_tweet(Diary *d, Tweet *t) {
+  Tweet *prev = t->prev;
+  Tweet *next = t->next;
 
-    if (prev) prev->next = next;
-    else d->first = next;
+  if (prev)
+    prev->next = next;
+  else
+    d->first = next;
 
-    if (next) next->prev = prev;
-    else d->last = prev;
+  if (next)
+    next->prev = prev;
+  else
+    d->last = prev;
 
-    free(t);
+  free(t);
 }
 
-void add_tweet(Diary* d, const char* msg)
-{
-    Tweet* t = (Tweet*)malloc(sizeof(Tweet));
+void add_tweet(Diary *d, const char *msg) {
+  Tweet *t = (Tweet *)malloc(sizeof(Tweet));
 
-    t->ts = time(NULL);
-    strcpy(t->msg, msg);
+  t->ts = time(NULL);
+  strcpy(t->msg, msg);
 
-    t->prev = d->last;
-    t->next = NULL;
+  t->prev = d->last;
+  t->next = NULL;
 
-    if (d->last) d->last->next = t;
-    d->last = t;
-    if (!d->first) d->first = t;
+  if (d->last)
+    d->last->next = t;
+  d->last = t;
+  if (!d->first)
+    d->first = t;
 }
 
-void print_tweets(const Diary* d)
-{
-    int i = 0;
-    for (Tweet* t = d->first; t; t = t->next) {
-        char s[100];
-        printf("%d: %s\t%s\n\n", i++, ctime_r(&(t->ts), s), t->msg);
-    }
+void print_tweets(const Diary *d) {
+  int i = 0;
+  for (Tweet *t = d->first; t; t = t->next) {
+    char s[100];
+    printf("%d: %s\t%s\n\n", i++, ctime_r(&(t->ts), s), t->msg);
+  }
 }
 
+int main() {
+  Diary *diary = create_diary();
 
-int main()
-{
-    Diary* diary = create_diary();
+  add_tweet(diary, "Hello, World!");
+  add_tweet(diary, "My second tweet!");
+  add_tweet(diary, "My third tweet!");
 
-    add_tweet(diary, "Hello, World!");
-    add_tweet(diary, "My second tweet!");
-    add_tweet(diary, "My third tweet!");
+  Tweet *tw = get_tweet(diary, 1);
+  remove_tweet(diary, tw);
 
-    Tweet* tw = get_tweet(diary, 1);
-    remove_tweet(diary, tw);
+  add_tweet(diary, "My last tweet!");
 
-    add_tweet(diary, "My last tweet!");
+  print_tweets(diary);
 
-    print_tweets(diary);
-
-    return 0;
+  return 0;
 }
