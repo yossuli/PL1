@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 // 構造体を定義する
-[(1)] student {
+struct student {
   char name[50];
   const char student_id[10];
   int course_id;
@@ -9,12 +9,12 @@
 };
 
 // struct student 型に別名をつける
-[(2)] struct student student_t;
+typedef struct student student_t;
 
 // 学生の成績を修正する
 void changeScore(student_t *someone, float newScore) {
   // 構造体ポインタによりメンバのscoreの値を修正する。
-  someone[(3)] = newScore;
+  someone->score = newScore;
 }
 
 int main() {
@@ -27,9 +27,9 @@ int main() {
   };
 
   // 構造体変数(enryo)のポインタを受け渡す
-  changeScore([(4)], 85.);
+  changeScore(&enryo, 85.);
 
   // 構造体変数(enryo)のメンバの参照を行う
-  printf("name: %s, score: %f\n", [(5)]);
+  printf("name: %s, score: %f\n", enryo.name, enryo.score);
   return 0;
 }
