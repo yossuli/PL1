@@ -64,7 +64,7 @@ void add_tweet(Diary *d, const char *msg) {
 
 void print_tweets(const Diary *d) {
   int i = 0;
-  for (Tweet *t = d->first; t; t = t->next) {
+  for (Tweet *t = d->last; t; t = t->prev) {
     char s[100];
     printf("%d: %s\t%s\n\n", i++, ctime_r(&(t->ts), s), t->msg);
   }
