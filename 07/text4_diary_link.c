@@ -70,6 +70,17 @@ void print_tweets(const Diary *d) {
   }
 }
 
+int save_diary(const Diary *d) {
+  FILE *fp = fopen("diary.bin", "w");
+  if (!fp)
+    goto error;
+
+  size_t n = fwrite(d->);
+error:
+  if (fp)
+    fclose(fp);
+  return 1;
+}
 int main() {
   Diary *diary = create_diary();
 
