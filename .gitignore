@@ -1,3 +1,6 @@
 *
 !*/
 !*.*
+09/diary_sample
+09/raytracer/*
+!09/raytracer/Makefile
