@@ -11,5 +11,11 @@
   },
   "github.copilot.enable": {
     "c": false
+  },
+  "files.associations": {
+    "*.py": "python",
+    "*.html": "html",
+    "ctype.h": "c",
+    "stdio.h": "c"
   }
 }
