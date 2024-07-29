@@ -16,6 +16,7 @@
     "*.py": "python",
     "*.html": "html",
     "ctype.h": "c",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "mygraph.h": "c"
   }
 }
